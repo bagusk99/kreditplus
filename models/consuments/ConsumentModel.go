@@ -44,8 +44,19 @@ func GetAll() []entities.Consument {
 
 func Create(consument entities.Consument) {
 	_, err := config.DB.Exec(`
-		insert into categories (name, created_at, updated_at)
-		value (?, ?, ?, ?, ?, ?, ?, ?)`,
+		insert into consuments (
+			nik,
+			full_name,
+			legal_name,
+			place_of_birth,
+			date_of_birth,
+			salary,
+			ktp_photo,
+			selfie_photo,
+			created_at,
+			updated_at
+		)
+		value (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 		consument.Nik,
 		consument.FullName,
 		consument.LegalName,
@@ -54,7 +65,6 @@ func Create(consument entities.Consument) {
 		consument.Salary,
 		consument.KtpPhoto,
 		consument.SelfiePhoto,
-
 		consument.CreatedAt, 
 		consument.UpdatedAt,
 	)	

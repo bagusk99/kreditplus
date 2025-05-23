@@ -8,5 +8,9 @@ import (
 func Index(w http.ResponseWriter, r *http.Request) {
 	temp := RenderTemplate.Render("views/pages/dashboard.html")
 
-	temp.Execute(w, nil);
+	data := map[string]any {
+		"activePage": "dashboard",
+	}
+
+	temp.Execute(w, data);
 }

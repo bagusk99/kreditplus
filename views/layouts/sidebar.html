@@ -13,7 +13,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class='nav-item {{ if eq .activePage "dashboard"}}active{{end}}'>
         <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    <li class='nav-item {{ if eq .activePage "consument"}}active{{end}}'>
         <a class="nav-link" href="/consuments">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Consuments</span></a>

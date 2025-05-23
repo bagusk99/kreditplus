@@ -1,0 +1,78 @@
+{{ define "content" }}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <form action="/consuments/add" method="POST">
+          <div class="row">
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">NIK</label>
+                <input type="text" name="nik" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Full Name</label>
+                <input type="text" name="full_name" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Legal Name</label>
+                <input type="text" name="legal_name" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Place of Birth</label>
+                <input type="text" name="place_of_birth" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Date of Birth</label>
+                <input type="date" name="date_of_birth" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Salary</label>
+                <input type="text" name="salary" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">KTP Photo</label>
+                <input type="text" name="ktp_photo" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Selfie Photo</label>
+                <input type="text" name="selfie_photo" class="form-control">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary">Save</button>
+            <a href="/consuments" class="btn btn-outline-danger">Back</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ end }}

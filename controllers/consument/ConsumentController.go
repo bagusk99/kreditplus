@@ -14,6 +14,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 	data := map[string]any {
 		"consuments": consuments,
+		"activePage": "consument",
 	}
 
 	temp := RenderTemplate.Render("views/pages/consument/index.html")
@@ -25,7 +26,11 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		temp := RenderTemplate.Render("views/pages/consument/create.html")
 
-		temp.Execute(w, nil)
+		data := map[string]any {
+			"activePage": "consument",
+		}
+
+		temp.Execute(w, data)
 	}
 
 	if r.Method == "POST" {
@@ -45,6 +50,6 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 		consuments.Create(consument)
 
-		http.Redirect(w, r, "/categories", http.StatusSeeOther)
+		http.Redirect(w, r, "/consuments", http.StatusSeeOther)
 	}
 }
