@@ -1,0 +1,71 @@
+{{ define "content" }}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <form action="/transactions/add" method="POST">
+          <div class="row">
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Consument</label>
+                <input type="number" name="consument_id" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Contract Number</label>
+                <input type="text" name="contract_number" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">OTR</label>
+                <input type="number" name="otr" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Admin Fee</label>
+                <input type="number" name="admin_fee" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Installment</label>
+                <input type="number" name="installment" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Interest</label>
+                <input type="number" name="interest" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">Asset Name</label>
+                <input type="text" name="asset_name" class="form-control">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary">Save</button>
+            <a href="/transactions" class="btn btn-outline-danger">Back</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ end }}

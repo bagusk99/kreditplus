@@ -1,0 +1,43 @@
+{{ define "content" }}
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <table class="table bordered">
+          <thead>
+            <tr>
+              <th>Consument</th>
+              <th>Contract Number</th>
+              <th>OTR</th>
+              <th>Admin Fee</th>
+              <th>Installment</th>
+              <th>Interest</th>
+              <th>Asset Name</th>
+              <th>
+                <a href="/transactions/add" class="btn btn-primary">Add</a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range.transactions }}
+              <tr>
+                <td>{{ .ConsumentId }}</td>
+                <td>{{ .ContractNumber }}</td>
+                <td>{{ .Otr }}</td>
+                <td>{{ .AdminFee }}</td>
+                <td>{{ .Installment }}</td>
+                <td>{{ .Interest }}</td>
+                <td>{{ .AssetName }}</td>
+                <td>
+                  <a href="/transactions/edit?id={{ .Id }}" class="btn btn-warning text-light">Edit</a>
+                  <a href="/transactions/delete?id={{ .Id }}" class="btn btn-danger text-light" onclick="return confirm('are you sure ?')">Delete</a>
+                </td>
+              </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
