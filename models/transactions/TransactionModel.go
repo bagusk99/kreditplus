@@ -47,7 +47,11 @@ func GetAll() []entities.Transaction {
 }
 
 func Create(transaction entities.Transaction) {
-	_, err := config.DB.Exec(`
+	tx, err := config.DB.Begin()
+	if err != nil {
+		panic(err)
+	}
+	_, err = config.DB.Exec(`
 		insert into transactions (
 			consument_id,
 			contract_number,
@@ -71,6 +75,12 @@ func Create(transaction entities.Transaction) {
 		transaction.UpdatedAt,
 	)	
 
+	if err != nil {
+		tx.Rollback()
+		panic(err)
+	}
+
+	err = tx.Commit() // commit jika berhasil semua
 	if err != nil {
 		panic(err)
 	}
