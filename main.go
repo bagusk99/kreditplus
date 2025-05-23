@@ -15,6 +15,7 @@ func main() {
 
 	http.HandleFunc("/consuments", consument.Index)	
 	http.HandleFunc("/consuments/add", consument.Add)	
+	http.HandleFunc("/consuments/delete", consument.Delete)	
 
 	log.Println("Server running on port 8000")
 

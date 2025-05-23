@@ -3,6 +3,7 @@ package consuments
 import (
 	"kreditplus/config"
 	"kreditplus/entities"
+	"log"
 )
 
 func GetAll() []entities.Consument {
@@ -72,4 +73,8 @@ func Create(consument entities.Consument) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func Delete(id int) {
+	config.DB.Exec(`DELETE from consuments where id = ?`, id)
 }

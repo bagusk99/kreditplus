@@ -53,3 +53,16 @@ func Add(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/consuments", http.StatusSeeOther)
 	}
 }
+
+func Delete(w http.ResponseWriter, r *http.Request) {
+	idString := r.FormValue("id")
+	id, err := strconv.Atoi(idString)
+
+	if err != nil {
+		panic(err)
+	}
+
+	consuments.Delete(id)
+
+	http.Redirect(w, r, "/consuments", http.StatusSeeOther)
+}
