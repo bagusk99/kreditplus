@@ -18,8 +18,8 @@ func ConnectDB() {
 		log.Println("Warning: .env file not found, using system env")
 	}
 
-	user := os.Getenv("DB_USERNAME")
-	pass := os.Getenv("DB_PASSWORD")
+	user := os.Getenv("DB_USER")
+	pass := os.Getenv("DB_PASS")
 	host := os.Getenv("DB_HOST")
 	port := os.Getenv("DB_PORT")
 	name := os.Getenv("DB_NAME")

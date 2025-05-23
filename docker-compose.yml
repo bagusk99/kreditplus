@@ -3,9 +3,7 @@ services:
     build: .
     container_name: kreditplus-app
     ports:
-      - "8080:8080"
-    volumes:
-      - .:/app
+      - "8000:8000"
     depends_on:
       - db
     environment:
@@ -20,7 +18,7 @@ services:
     image: mysql:8
     container_name: kreditplus-mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: kreditplus

@@ -12,10 +12,11 @@ RUN go mod download
 COPY . .
 
 # Build binary aplikasi (hasilnya file 'app')
-RUN go build -o app .
+# RUN go build -o app .
+RUN go build -o app . && ls -lah
 
 # Expose port aplikasi (sesuaikan dengan port yang kamu pakai)
-EXPOSE 8080
+EXPOSE 8000
 
 # Jalankan binary aplikasi
 CMD ["./app"]
