@@ -7,11 +7,17 @@ import (
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/joho/godotenv"
 )
 
 var DB *sql.DB
 
 func ConnectDB() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("Warning: .env file not found, using system env")
+	}
+
 	user := os.Getenv("DB_USERNAME")
 	pass := os.Getenv("DB_PASSWORD")
 	host := os.Getenv("DB_HOST")
