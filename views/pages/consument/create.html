@@ -4,7 +4,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-body">
-        <form action="/consuments/add" method="POST">
+        <form enctype="multipart/form-data" action="/consuments/add" method="POST">
           <div class="row">
 
             <div class="col-md-4">
@@ -52,14 +52,14 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">KTP Photo</label>
-                <input type="text" name="ktp_photo" class="form-control">
+                <input type="file" name="ktp_photo" class="form-control">
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Selfie Photo</label>
-                <input type="text" name="selfie_photo" class="form-control">
+                <input type="file" name="selfie_photo" class="form-control">
               </div>
             </div>
 

@@ -27,6 +27,7 @@ func main() {
 	log.Println("Server running on port 8000")
 
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
 
 	http.ListenAndServe(":8000", nil);
 }

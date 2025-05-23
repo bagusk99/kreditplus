@@ -28,8 +28,12 @@
                 <td>{{ .PlaceOfBirth }}</td>
                 <td>{{ .DateOfBirth }}</td>
                 <td>{{ .Salary }}</td>
-                <td>{{ .KtpPhoto }}</td>
-                <td>{{ .SelfiePhoto }}</td>
+                <td>
+                  <img src="/public/uploads/{{ .KtpPhoto }}" alt="KTP Photo" height="30">
+                </td>
+                <td>
+                  <img src="/public/uploads/{{ .SelfiePhoto }}" alt="Slefie Photo" height="30">
+                </td>
                 <td>
                   <a href="/consuments/edit?id={{ .Id }}" class="btn btn-warning text-light">Edit</a>
                   <a href="/consuments/delete?id={{ .Id }}" class="btn btn-danger text-light" onclick="return confirm('are you sure ?')">Delete</a>

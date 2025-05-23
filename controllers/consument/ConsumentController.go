@@ -1,12 +1,19 @@
 package consument
 
 import (
+	"fmt"
+	"io"
 	"kreditplus/entities"
 	"kreditplus/models/consuments"
 	RenderTemplate "kreditplus/services"
+	"log"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strconv"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -34,6 +41,12 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == "POST" {
+		err := r.ParseMultipartForm(10 << 20) // 10MB
+		if err != nil {
+			http.Error(w, "Gagal parsing form", http.StatusBadRequest)
+			return
+		}
+
 		var consument entities.Consument
 
 		consument.Nik = r.FormValue("nik")
@@ -42,11 +55,51 @@ func Add(w http.ResponseWriter, r *http.Request) {
 		consument.PlaceOfBirth = r.FormValue("place_of_birth")
 		consument.DateOfBirth, _ = time.Parse("2006-01-02", r.FormValue("date_of_birth"))
 		consument.Salary, _ = strconv.Atoi(r.FormValue("salary"))
-		consument.KtpPhoto = r.FormValue("ktp_photo")
-		consument.SelfiePhoto = r.FormValue("selfie_photo")
 
 		consument.CreatedAt = time.Now()
 		consument.UpdatedAt = time.Now()
+
+		// === Upload KTP Photo ===
+		ktpFile, ktpHeader, err := r.FormFile("ktp_photo")
+		if err == nil {
+			defer ktpFile.Close()
+
+			originalFilename := ktpHeader.Filename
+			ext := filepath.Ext(originalFilename)
+			nameOnly := filepath.Base(originalFilename[:len(originalFilename)-len(ext)])
+			newFileName := fmt.Sprintf("%s-%s%s", nameOnly, uuid.New().String(), ext)
+
+			ktpPath := "public/uploads/" + newFileName
+			dst, err := os.Create(ktpPath)
+			if err != nil {
+				log.Println("Gagal buat file:", err)
+				return
+			}
+			defer dst.Close()
+			io.Copy(dst, ktpFile)
+			consument.KtpPhoto = newFileName
+		}
+
+		// === Upload Selfie Photo ===
+		selfieFile, selfieHeader, err := r.FormFile("selfie_photo")
+		if err == nil {
+			defer selfieFile.Close()
+
+			originalFilename := selfieHeader.Filename
+			ext := filepath.Ext(originalFilename)
+			nameOnly := filepath.Base(originalFilename[:len(originalFilename)-len(ext)])
+			newFileName := fmt.Sprintf("%s-%s%s", nameOnly, uuid.New().String(), ext)
+
+			selfiePath := "public/uploads/" + newFileName
+			dst, err := os.Create(selfiePath)
+			if err != nil {
+				log.Println("Gagal buat file:", err)
+				return
+			}
+			defer dst.Close()
+			io.Copy(dst, selfieFile)
+			consument.SelfiePhoto = newFileName
+		}
 
 		consuments.Create(consument)
 
