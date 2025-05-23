@@ -4,7 +4,7 @@ CREATE TABLE `consuments` (
   `full_name` varchar(255) NOT NULL,
   `legal_name` varchar(255) NOT NULL,
   `place_of_birth` varchar(100) NOT NULL,
-  `date_of_birth` timestamp NOT NULL,
+  `date_of_birth` date NOT NULL,
   `salary` int NOT NULL,
   `ktp_photo` varchar(255) NOT NULL,
   `selfie_photo` varchar(255) NOT NULL,
