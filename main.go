@@ -2,7 +2,8 @@ package main
 
 import (
 	"kreditplus/config"
-	DashboardController "kreditplus/controllers"
+	"kreditplus/controllers/consument"
+	"kreditplus/controllers/dashboard"
 	"log"
 	"net/http"
 )
@@ -10,7 +11,10 @@ import (
 func main() {
 	config.ConnectDB()
 
-	http.HandleFunc("/", DashboardController.Index)	
+	http.HandleFunc("/", dashboard.Index)	
+
+	http.HandleFunc("/consuments", consument.Index)	
+	http.HandleFunc("/consuments/add", consument.Add)	
 
 	log.Println("Server running on port 8000")
 

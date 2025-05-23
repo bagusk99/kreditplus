@@ -1,0 +1,43 @@
+{{ define "content" }}
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <table class="table bordered">
+          <thead>
+            <tr>
+              <th>NIK</th>
+              <th>Full Name</th>
+              <th>Legal Name</th>
+              <th>Place of Birth</th>
+              <th>Date of Birth</th>
+              <th>Salary</th>
+              <th>KTP Photo</th>
+              <th>Selfie Photo</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range.consuments }}
+              <tr>
+                <td>{{ .Nik }}</td>
+                <td>{{ .FullName }}</td>
+                <td>{{ .LegalName }}</td>
+                <td>{{ .PlaceOfBirth }}</td>
+                <td>{{ .DateOfBirth }}</td>
+                <td>{{ .Salary }}</td>
+                <td>{{ .KtpPhoto }}</td>
+                <td>{{ .SelfiePhoto }}</td>
+                <td>
+                  <a href="/consuments/edit?id={{ .Id }}" class="btn btn-warning text-light">Edit</a>
+                  <a href="/consuments/delete?id={{ .Id }}" class="btn btn-danger text-light" onclick="return confirm('are you sure ?')">Delete</a>
+                </td>
+              </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

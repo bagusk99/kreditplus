@@ -1,4 +1,4 @@
-package DashboardController
+package dashboard
 
 import (
 	RenderTemplate "kreditplus/services"
