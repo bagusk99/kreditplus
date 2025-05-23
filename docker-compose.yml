@@ -1,0 +1,39 @@
+services:
+  app:
+    build: .
+    container_name: kreditplus-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASS: root
+      DB_NAME: kreditplus
+    restart: unless-stopped
+
+  db:
+    image: mysql:8
+    container_name: kreditplus-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kreditplus
+    volumes:
+      - dbdata:/var/lib/mysql
+    restart: unless-stopped
+
+  adminer:
+    image: adminer
+    container_name: kreditplus-adminer
+    restart: unless-stopped
+    ports:
+      - 8081:8080
+
+volumes:
+  dbdata:
