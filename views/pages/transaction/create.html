@@ -10,7 +10,12 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Consument</label>
-                <input type="number" name="consument_id" class="form-control">
+                <select name="consument_id" class="form-control">
+                  <option value="" class="d-none">-- Select --</option>
+                  {{ range.consuments }}
+                    <option value="{{ .Id }}">{{ .FullName }}</option>
+                  {{ end }}
+                </select>
               </div>
             </div>
 

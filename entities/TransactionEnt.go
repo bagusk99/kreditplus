@@ -1,10 +1,13 @@
 package entities
 
-import "time"
+import (
+	"time"
+)
 
 type Transaction struct {
 	Id uint
 	ConsumentId int
+	Consument Consument
 	ContractNumber string
 	Otr int
 	AdminFee int

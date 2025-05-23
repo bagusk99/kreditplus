@@ -2,6 +2,7 @@ package transaction
 
 import (
 	"kreditplus/entities"
+	"kreditplus/models/consuments"
 	"kreditplus/models/transactions"
 	RenderTemplate "kreditplus/services"
 	"net/http"
@@ -24,9 +25,12 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 func Add(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
+		consuments := consuments.GetAll()
+
 		temp := RenderTemplate.Render("views/pages/transaction/create.html")
 
 		data := map[string]any {
+			"consuments": consuments,
 			"activePage": "transaction",
 		}
 
@@ -55,6 +59,8 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 func Edit(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
+		consuments := consuments.GetAll()
+
 		temp := RenderTemplate.Render("views/pages/transaction/edit.html")
 
 		idString := r.URL.Query().Get("id")
@@ -66,6 +72,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 
 		transaction := transactions.Detail(id)
 		data := map[string]any {
+			"consuments": consuments,
 			"transaction": transaction,
 			"activePage": "transaction",
 		}

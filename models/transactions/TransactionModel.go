@@ -35,6 +35,11 @@ func GetAll() []entities.Transaction {
 			panic(err)
 		}
 
+		rowConsument := config.DB.QueryRow(`SELECT full_name FROM consuments WHERE id = ?`, transaction.ConsumentId)
+		var consument entities.Consument
+		_ = rowConsument.Scan(&consument.FullName)
+		transaction.Consument = consument
+
 		transactions = append(transactions, transaction)
 	}
 

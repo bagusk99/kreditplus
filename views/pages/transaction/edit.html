@@ -11,7 +11,11 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Consument</label>
-                <input type="number" name="consument_id" class="form-control" value="{{ .transaction.ConsumentId }}">
+                <select name="consument_id" class="form-control">
+                  {{ range $.consuments }}
+                    <option value="{{ .Id }}" {{ if eq .Id $.transaction.ConsumentId }}selected{{end}}>{{ .FullName }}</option>
+                  {{ end }}
+                </select>
               </div>
             </div>
 
